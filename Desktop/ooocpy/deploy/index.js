@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT
 const passport = require('passport')
 
 const playerRouter = require('./routes/playerRTS')
@@ -16,6 +16,9 @@ app.listen(port, () => {
     console.log(`Working on http://localhost:${port}`)
 });
 
+app.get('/', (req, res) => {
+    res.send(`Server is working!`)
+});
 app.use('/api', playerRouter);
 app.use('/api', teamRouter);
 app.use('/api', userRouter);
